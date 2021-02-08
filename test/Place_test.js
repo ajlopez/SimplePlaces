@@ -17,4 +17,11 @@ contract("Place", function (accounts) {
         
         assert.equal(noplaces, NROWS * NCOLS);
     });
+    
+    it('get places', async function () {
+        const places = await place.getPlaces();
+        
+        assert.ok(places);
+        assert.equal(places.length, NROWS * NCOLS);
+    });
 });

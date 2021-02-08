@@ -11,5 +11,9 @@ contract Place {
     function noPlaces() public view returns (uint) {
         return places.length;
     }
+    
+    function getPlaces() public view returns (address[] memory) {
+        return places;
+    }
 }
 
