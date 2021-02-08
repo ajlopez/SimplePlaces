@@ -41,6 +41,10 @@ contract("Place", function (accounts) {
                 assert.equal(places[k], subplace.address);
             else
                 assert.equal(places[k], ZERO_ADDRESS);
+            
+        const result = await place.places(42);
+        
+        assert.equal(result, subplace.address);
     });
 });
 
