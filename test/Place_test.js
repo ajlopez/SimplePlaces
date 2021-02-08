@@ -1,6 +1,7 @@
 const Place = artifacts.require("Place");
 
 contract("Place", function (accounts) {
+    const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
     const alice = accounts[0];
     
     const NCOLS = 16;
@@ -23,5 +24,23 @@ contract("Place", function (accounts) {
         
         assert.ok(places);
         assert.equal(places.length, NROWS * NCOLS);
+        
+        for (k = 0; k < NROWS * NCOLS; k++)
+            assert.equal(places[k], ZERO_ADDRESS);
+    });
+    
+    it('put place', async function () {
+        const subplace = await Place.new(42);
+        
+        place.putPlace(42, subplace.address);
+        
+        const places = await place.getPlaces();
+        
+        for (k = 0; k < NROWS * NCOLS; k++)
+            if (k == 42)
+                assert.equal(places[k], subplace.address);
+            else
+                assert.equal(places[k], ZERO_ADDRESS);
     });
 });
+

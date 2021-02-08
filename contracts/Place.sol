@@ -15,5 +15,9 @@ contract Place {
     function getPlaces() public view returns (address[] memory) {
         return places;
     }
+    
+    function putPlace(uint position, address place) public {
+        places[position] = place;
+    }
 }
 
