@@ -29,6 +29,16 @@ contract("Place", function (accounts) {
             assert.equal(places[k], ZERO_ADDRESS);
     });
     
+    it('get places range', async function () {
+        const places = await place.getPlacesRange(NCOLS, NCOLS);
+        
+        assert.ok(places);
+        assert.equal(places.length, NCOLS);
+        
+        for (k = 0; k < NROWS; k++)
+            assert.equal(places[k], ZERO_ADDRESS);
+    });
+    
     it('put place', async function () {
         const subplace = await Place.new(42);
         
